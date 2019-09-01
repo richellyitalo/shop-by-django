@@ -1,0 +1,23 @@
+/*
+categorias [titulo]
+  todos [titulo, categoria:^, descrição:nullable]
+    imagens[todo:^]
+*/
+
+☐ categorias
+  ☐ create
+  ☐ read
+  ☐ update
+  ☐ delete
+
+☐ todos
+  ☐ create
+  ☐ read
+  ☐ update
+  ☐ delete
+  
+☐ imagens do todo
+  ☐ create
+  ☐ read
+  ☐ updt
+  ☐ del
