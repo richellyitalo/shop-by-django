@@ -32,8 +32,13 @@ class Todo(models.Model):
 # def handler_pre_save_todo(sender, instance, update_fields, **kwargs):
 #     instance.user = User
 
+class ImagemManger(models.Manager):
+    def pegar_ultimas(self, qtd):
+        return self.order_by('-created_at')[:qtd]
+
 
 class Imagem(models.Model):
+    objects = ImagemManger()
     todo = models.ForeignKey(Todo, on_delete=models.CASCADE)
     descricao = models.CharField(max_length=255, null=True, blank=True)
     imagem = ProcessedImageField(
@@ -59,6 +64,10 @@ class Imagem(models.Model):
         if self.pk and has_changed(self, 'imagem'):
             kwargs['update_fields'] = ['imagem']
         super().save(**kwargs)
+
+    @classmethod
+    def get_ultimas(cls, qtd):
+        return cls.objects.order_by('-created_at')[:qtd]
 
 
 @receiver(pre_delete, sender=Imagem)

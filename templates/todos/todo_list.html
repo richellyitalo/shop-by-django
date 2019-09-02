@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="row">
+
+        <div class="col-4">
+
+            <h4>Lista de todos</h4>
+            <ul>
+                {% for todo in object_list %}
+                    <li>
+                        <a href="{% url 'todos-view' todo.pk %}">
+                            {{ todo.titulo }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-3">
+            <h4>Últimas imagens</h4>
+            {% for imagem in ultimas_imagens %}
+                <img src="{{ imagem.thumbnail.url }}" width="100%"/>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

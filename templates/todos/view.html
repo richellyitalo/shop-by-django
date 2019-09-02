@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h2>Todo</h2>
+    <h4>Título: {{ todo.titulo }}</h4>
+    <p>Descrição: {{ todo.descricao }}</p>
+    {% if imagens %}
+        <h5>Imagens</h5>
+        <div class="row">
+            {% for imagem in imagens %}
+                <div class="col-2">
+                    <a href="{{ imagem.imagem.url }}" target="_blank">
+                        <img src="{{ imagem.thumbnail.url }}" width="150" class="img-thumbnail"/>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
