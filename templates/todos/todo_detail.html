@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="row">
+
+        <div class="col-4">
+
+            <h4>django.views.generic.DetailView</h4>
+            <h3>{{ object.titulo }}</h3>
+            <p>{{ object.descricao }}</p>
+            <p>Categoria: <strong>{{ object.categoria }}</strong></p>
+            <a href="/todos/lista">Voltar para lista</a>
+        </div>
+
+        {% if imagens %}
+            <div class="col-4">
+                <h4>Imagens</h4>
+
+                {% for imagem in imagens %}
+                    <img src="{{ imagem.thumbnail.url }}" width="100%"/>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

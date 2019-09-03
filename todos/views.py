@@ -6,7 +6,7 @@ from .models import Todo, Imagem
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
 from django.template.response import TemplateResponse
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 
 
 def tempo_atual(request):
@@ -28,12 +28,11 @@ def view(request, pk):
     # return tpl.render()
 
 
-from django.views.generic import ListView
-
 
 class TodoListView(ListView):
     model = Todo
     context_object_name = 'teste'
+    # queryset = Todo.objects.filter(titulo__contains='todo')
 
     def head(self, *args, **kwargs):
         last_todo = self.get_queryset().last('created_at')
@@ -53,3 +52,15 @@ class TodoListView(ListView):
 # https://docs.djangoproject.com/en/2.2/topics/class-based-views/
 class SobreView(TemplateView):
     template_name = 'misc/sobre.html'
+
+
+class TodoDetail(DetailView):
+    model = Todo
+    queryset = Todo.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['imagens'] = self.object.imagem_set.all()
+        return context
+
+
