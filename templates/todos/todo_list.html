@@ -5,6 +5,9 @@
         <div class="col-4">
 
             <h4>Lista de todos</h4>
+            <p>
+                <a href="{% url 'todos-contato' %}">Contato</a>
+            </p>
             <ul>
                 {% for todo in object_list %}
                     <li>

@@ -28,10 +28,10 @@ def view(request, pk):
     # return tpl.render()
 
 
-
 class TodoListView(ListView):
     model = Todo
     context_object_name = 'teste'
+
     # queryset = Todo.objects.filter(titulo__contains='todo')
 
     def head(self, *args, **kwargs):
@@ -64,3 +64,20 @@ class TodoDetail(DetailView):
         return context
 
 
+from .forms import ContactForm
+from django.views.generic.edit import FormView
+
+
+class ContactView(FormView):
+    template_name = 'misc/contato.html'
+    form_class = ContactForm
+    success_url = '/todos/lista/'
+
+    def form_invalid(self, form):
+        print('--formulário invalido')
+        return super().form_invalid(form)
+
+    def form_valid(self, form):
+        print('---------------- form_valido ---------------')
+        form.enviar_email()
+        return super().form_valid(form)

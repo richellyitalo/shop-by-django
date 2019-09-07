@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Formulário de contato</h1>
+    {{ form.media }}
+    <div class="row">
+        <div class="col-md-8">
+            <form action="{% url 'todos-contato' %}" method="post">
+                {% csrf_token %}
+
+                {{ form }}
+                <br/>
+                <div class="form-group">
+                    <button class="btn btn-success">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

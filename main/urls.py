@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from todos.views import tempo_atual
 from todos.views import SobreView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
