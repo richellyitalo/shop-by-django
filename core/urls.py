@@ -16,14 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from todos.views import tempo_atual
 from todos.views import SobreView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from rest_framework import routers
+from todos import viewsets
 
+router = routers.DefaultRouter()
+router.register(r'users', viewsets.UserViewSet)
+router.register(r'groups', viewsets.GroupViewSet)
 
 urlpatterns = [
+    path('', include('snippets.urls')),
     path('admin/', admin.site.urls),
     path('todos/', include('todos.urls')),
     path('sobre/', SobreView.as_view()),
+    url(r'api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
