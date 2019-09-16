@@ -34,5 +34,5 @@ class SnippetViewSet(viewsets.ModelViewSet):
 def api_root(request, format=None):
     return Response({
         'users': reverse('users-list', request=request, format=format),
-        #'snippets': reverse('snippet-list', request=request, format=format)
+        # 'snippets': reverse('snippet-list', request=request, format=format)
     })

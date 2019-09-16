@@ -29,12 +29,13 @@ router = routers.DefaultRouter()
 # router.register(r'users', viewsets.UserViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'snippets', SnippetViewSet)
-router.register(r'groups', viewsets.GroupViewSet)
+#router.register(r'groups', viewsets.GroupViewSet)
 
 urlpatterns = [
     #path('', include('snippets.urls')),
     path('admin/', admin.site.urls),
     path('todos/', include('todos.urls')),
+
     path('sobre/', SobreView.as_view()),
     url(r'api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
